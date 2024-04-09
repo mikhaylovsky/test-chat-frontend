@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "vue": "^3.4.21",
+    "vue-clerk": "^0.2.1",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
