@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import { socket, state } from '@/socket'
 import { ref, watch } from 'vue'
-import { useUser } from 'vue-clerk'
-
-const { user } = useUser()
+import { authState } from '@/auth'
 
 const messageText = ref<string | null>(null)
 const messageBox = ref<HTMLElement>()
@@ -29,7 +27,7 @@ const send = () => {
   }
 
   socket.emit('test-socket-emit', {
-    user: user.value ? user.value.username : null,
+    user: authState.username,
     message: messageText.value
   })
 

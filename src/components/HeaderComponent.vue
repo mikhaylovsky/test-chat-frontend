@@ -1,15 +1,18 @@
 <script setup lang="ts">
-import { UserButton, useUser } from 'vue-clerk'
+import { auth, authState } from '@/auth'
 
-const { user } = useUser()
+const logout = () => auth.logout()
 </script>
 
 <template>
   <div class="header">
     <div class="welcome">
-      <p>Welcome, {{ user ? user.username : 'stranger' }}!</p>
+      <p v-if="authState.loggedIn">Welcome, {{ authState.username }}!</p>
+      <p v-else>Welcome to the chat! Please, register or log in!</p>
     </div>
-    <UserButton afterSignOutUrl="/sign-in" />
+    <div v-if="authState.loggedIn" class="logout">
+      <button @click="logout()">Log out</button>
+    </div>
   </div>
 </template>
 
