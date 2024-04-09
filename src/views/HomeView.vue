@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { SignedIn, useUser } from 'vue-clerk'
-import HeaderComponent from '../components/HeaderComponent.vue'
+import HeaderComponent from '@/components/HeaderComponent.vue'
+import ChatComponent from '@/components/ChatComponent.vue'
 import router from '@/router'
 import { watch } from 'vue'
 
@@ -17,6 +18,8 @@ watch(isSignedIn, (value) => {
   <main>
     <SignedIn>
       <HeaderComponent />
+
+      <ChatComponent />
     </SignedIn>
   </main>
 </template>

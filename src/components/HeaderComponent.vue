@@ -20,8 +20,5 @@ const { user } = useUser()
   display: flex;
   justify-content: space-between;
   place-items: center;
-  -webkit-box-shadow: 0 8px 16px -4px #750000;
-  -moz-box-shadow: 0 8px 16px -4px #750000;
-  box-shadow: 0 8px 16px -4px #750000;
 }
 </style>
