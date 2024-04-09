@@ -5,11 +5,15 @@ import { useUser } from 'vue-clerk'
 
 const { user } = useUser()
 
-const messageText = ref(null)
-const messageBox = ref(null)
+const messageText = ref<string | null>(null)
+const messageBox = ref<HTMLElement>()
 
 watch(state.messages, () => {
   setTimeout(() => {
+    if (!messageBox.value) {
+      return
+    }
+
     messageBox.value.scrollTo({
       top: messageBox.value.scrollHeight,
       behavior: 'smooth'
@@ -24,9 +28,18 @@ const send = () => {
     return
   }
 
-  socket.emit('test-socket-emit', { user: user.value.username, message: messageText.value })
+  socket.emit('test-socket-emit', {
+    user: user.value ? user.value.username : null,
+    message: messageText.value
+  })
 
   messageText.value = null
+}
+const fillMessage = (event: Event) => {
+  if (event && event.target) {
+    const inputTarget = event.target as HTMLInputElement
+    messageText.value = inputTarget.value
+  }
 }
 </script>
 
@@ -55,7 +68,7 @@ const send = () => {
         <input
           type="text"
           :value="messageText"
-          @input="(event) => (messageText = event.target.value)"
+          @input="fillMessage"
           @keyup.enter="send()"
           placeholder="Enter your message..."
           autofocus

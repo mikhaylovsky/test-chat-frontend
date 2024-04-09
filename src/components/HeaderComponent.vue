@@ -7,7 +7,7 @@ const { user } = useUser()
 <template>
   <div class="header">
     <div class="welcome">
-      <p>Welcome, {{ user.username }}!</p>
+      <p>Welcome, {{ user ? user.username : 'stranger' }}!</p>
     </div>
     <UserButton afterSignOutUrl="/sign-in" />
   </div>
