@@ -1,39 +1,38 @@
-# test-chat-frontend
+# Chat app
 
-This template should help get you started developing with Vue 3 in Vite.
+## Description
 
-## Recommended IDE Setup
+Live chat app based on Vue.js, typescript and socket.io library.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## App URL
+Please use [https://test-chat-frontend-production.up.railway.app](https://test-chat-frontend-production.up.railway.app) url for testing and review
 
-## Type Support for `.vue` Imports in TS
+## Technologies used
+- Vue.js v3.4 (Node.js based framework for backend)
+- socket.io (Websockets library for chat integration)
+- railway.app (Cloud app for deployment and hosting)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Installation
 
-## Customize configuration
+**NOTE**: You must have node environment not lower than 18 version or higher.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+First, clone this repository to your local machine. Then, follow these steps:
+1. Enter the cloned repository, and run the installation command:
 
-## Project Setup
+```bash
+$ yarn install
+```
+***you can obviously use **npm** if this is your favourite package manager*
 
-```sh
-npm install
+2. Set up the environment variables. There is a **.env.example** file with one environment variable, which is set to a default backend app host and port. Please change it to some other URL if needed. You can just simply copy/paste the file and rename it to **.env**.
+
+3. Run the application:
+```bash
+# development
+$ yarn dev
+
+# build
+$ yarn build
 ```
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+5. In case everything goes well, there should a message indication host and port in your console, where the app is running.
