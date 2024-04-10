@@ -2,6 +2,7 @@ import { ref } from 'vue'
 import { io, Socket } from 'socket.io-client'
 import Api from '@/api'
 import type { Message, EventMessage } from '@/types/message.type'
+import { authState } from '@/auth'
 
 class MessagesSocket {
   private readonly userId: string
@@ -40,8 +41,7 @@ class MessagesSocket {
 
     this.socket.on('connect', async (): Promise<void> => {
       this.connected.value = true
-      const lastMessages: Message[] = await Api.fetchLastMessages(10)
-      this.messages.value = [...this.messages.value, ...lastMessages]
+      this.messages.value = await Api.fetchLastMessages(10)
     })
 
     this.socket.on('disconnect', (): void => {
@@ -53,29 +53,33 @@ class MessagesSocket {
     })
 
     this.socket.on('client-connected', (data: EventMessage): void => {
-      const message: Message = {
-        id: data.id,
-        text: `${data.user.username} enters the chat`,
-        user: data.user,
-        type: 'event',
-        createdAt: data.createdAt
-      }
+      if (authState.userId && authState.userId !== data.user.id) {
+        const message: Message = {
+          id: data.id,
+          text: `${data.user.username} enters the chat`,
+          user: data.user,
+          type: 'event',
+          createdAt: data.createdAt
+        }
 
-      this.messages.value.push(message)
+        this.messages.value.push(message)
+      }
 
       this.onlineUsers.value = data.onlineUsers
     })
 
     this.socket.on('client-disconnected', (data: EventMessage): void => {
-      const message: Message = {
-        id: data.id,
-        text: `${data.user.username} enters the chat`,
-        user: data.user,
-        type: 'event',
-        createdAt: data.createdAt
-      }
+      if (authState.userId && authState.userId !== data.user.id) {
+        const message: Message = {
+          id: data.id,
+          text: `${data.user.username} leaves the chat`,
+          user: data.user,
+          type: 'event',
+          createdAt: data.createdAt
+        }
 
-      this.messages.value.push(message)
+        this.messages.value.push(message)
+      }
 
       this.onlineUsers.value = data.onlineUsers
     })
