@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { auth, authState } from '@/auth'
-
-const logout = () => auth.logout()
+import { authState } from '@/auth'
+import LogoutButtonComponent from '@/components/auth/LogoutButtonComponent.vue'
 </script>
 
 <template>
@@ -10,9 +9,7 @@ const logout = () => auth.logout()
       <p v-if="authState.loggedIn">Welcome, {{ authState.username }}!</p>
       <p v-else>Welcome to the chat! Please, register or log in!</p>
     </div>
-    <div v-if="authState.loggedIn" class="logout">
-      <button @click="logout()">Log out</button>
-    </div>
+    <LogoutButtonComponent />
   </div>
 </template>
 

@@ -1,15 +1,121 @@
 @import './base.css';
 
+#app {
+  min-height: 100vh;
+}
+
+#app main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#app main section.main-section {
+  flex-grow: 1;
+  display: flex;
+  padding: 1rem;
+  place-items: center;
+  justify-content: center;
+}
+
+#app .auth-component {
+  padding: 2rem;
+  background: #3e3e3e;
+  border-radius: 0.5rem;
+}
+
+input {
+  width: 100%;
+  background-color: transparent;
+  outline: none !important;
+  border: none;
+  padding: 1rem 0.2rem;
+  color: #ccc;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+button {
+  text-transform: uppercase;
+  background: transparent;
+  font-size: 0.75rem;
+  font-weight: bolder;
+  transition: transform ease 0.3s;
+  color: #ccc;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+button:disabled {
+  pointer-events: none;
+  transform: none !important;
+  background: #181818 !important;
+}
+
+button:hover {
+  transform: scale(110%);
+}
+
+button.green {
+  background: #00b300;
+}
+
+button.red {
+  background: #750000;
+}
+
+button.gray {
+  background: #3a3a3a;
+}
+
 a,
-.green {
+a.green {
   text-decoration: none;
   color: hsla(160, 100%, 37%, 1);
   transition: 0.4s;
   padding: 3px;
 }
 
+.error {
+  color: #db2727;
+}
+
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+.lds-dual-ring {
+  color: #ccc;
+}
+.lds-dual-ring,
+.lds-dual-ring:after {
+  box-sizing: border-box;
+}
+.lds-dual-ring {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+}
+.lds-dual-ring:after {
+  content: ' ';
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0.25rem;
+  border-radius: 50%;
+  border: 0.15rem solid currentColor;
+  border-color: currentColor transparent currentColor transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

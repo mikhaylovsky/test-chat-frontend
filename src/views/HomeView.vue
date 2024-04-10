@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import HeaderComponent from '@/components/HeaderComponent.vue'
 import ChatComponent from '@/components/ChatComponent.vue'
-import SignInComponent from '@/components/SignInComponent.vue'
+import AuthComponent from '@/components/AuthComponent.vue'
 import { authState } from '@/auth'
 </script>
 
@@ -9,7 +9,9 @@ import { authState } from '@/auth'
   <main>
     <HeaderComponent />
 
-    <ChatComponent v-if="authState.loggedIn" />
-    <SignInComponent v-else />
+    <section class="main-section">
+      <ChatComponent v-if="authState.loggedIn" />
+      <AuthComponent v-else />
+    </section>
   </main>
 </template>
