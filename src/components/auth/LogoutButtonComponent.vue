@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { auth, authState } from '@/auth'
+import { AuthMode, changeAuthMode } from '@/components/auth/useAuth'
 
-const logout = () => auth.logout()
+const logout = () => {
+  changeAuthMode(AuthMode.SIGN_IN)
+  auth.logout()
+}
 </script>
 
 <template>

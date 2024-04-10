@@ -39,6 +39,7 @@ const send = () => {
 
   messageText.value = null
 }
+
 const fillMessage = (event: Event) => {
   if (event && event.target) {
     const inputTarget = event.target as HTMLInputElement
@@ -76,10 +77,10 @@ const fillMessage = (event: Event) => {
       </div>
     </div>
     <div class="input-box">
-      <input
-        type="text"
+      <textarea
         :value="messageText"
         @input="fillMessage"
+        @keydown.enter="(event) => event.preventDefault()"
         @keyup.enter="send()"
         placeholder="Enter your message..."
         autofocus
@@ -99,13 +100,16 @@ const fillMessage = (event: Event) => {
   flex-direction: column;
   align-self: normal;
   max-height: calc(100vh - 10rem);
+  padding-bottom: 1rem;
 }
+
 .chat-box .header .connection-state {
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   place-items: center;
 }
+
 .chat-box .message-box {
   padding: 1rem 2rem;
   height: 100%;
@@ -113,7 +117,8 @@ const fillMessage = (event: Event) => {
   flex-direction: column;
   overflow-y: auto;
 }
-.connection-button {
+
+.chat-box .header .connection-state .connection-button {
   background: transparent;
   color: #fff;
   outline: none;
@@ -125,59 +130,66 @@ const fillMessage = (event: Event) => {
   font-weight: bolder;
   border-radius: 0.3rem;
 }
-.connection-button.connect {
+
+.chat-box .header .connection-state .connection-button.connect {
   background: #3480c7;
 }
-.message-box .message-box-message {
+
+.chat-box .message-box .message-box-message {
   margin-bottom: 1rem;
 }
-.event-message {
+
+.chat-box .message-box .event-message {
   font-size: 0.75rem;
 }
-.message-content {
+
+.chat-box .message-box .message-content {
   padding: 0.5rem;
   background: var(--color-background);
   display: inline-block;
   border-radius: 0.5rem;
 }
-.message-content.own-message {
+
+.chat-box .message-box .message-content.own-message {
   background: #3480c7;
 }
-.message-box-message .message-author {
+
+.chat-box .message-box .message-box-message .message-author {
   font-size: 0.75rem;
 }
-.input-box {
+
+.chat-box .input-box {
   position: relative;
   height: 4rem;
 }
-.input-box input {
+
+.chat-box .input-box textarea {
   width: 100%;
-  padding: 2rem;
+  padding: 0.5rem 6.5rem 0.5rem 2rem;
   background: transparent;
   border: none;
   outline: none;
   height: 4rem;
-  font-size: 1rem;
   color: #ccc;
+  resize: none !important;
+  line-height: 3rem;
 }
-.input-box button {
+
+.chat-box .input-box textarea::placeholder {
+  line-height: 3rem;
+}
+
+.chat-box .input-box button {
   position: absolute;
   height: 3rem;
   padding: 1rem 1.5rem;
-  right: 2rem;
-  top: 0.5rem;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
   background: #00b300;
-  border-radius: 0.5rem;
-  border: none;
-  outline: none;
-  color: #fff;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  font-weight: bolder;
-  cursor: pointer;
 }
-.input-box button:disabled {
-  pointer-events: none;
+
+.chat-box .input-box button:disabled {
   background: #ccc;
 }
 </style>

@@ -50,7 +50,7 @@ button {
 
 button:disabled {
   pointer-events: none;
-  transform: none !important;
+  transform: scale(0);
   background: #181818 !important;
 }
 
