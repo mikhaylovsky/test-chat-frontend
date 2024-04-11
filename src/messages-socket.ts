@@ -34,6 +34,14 @@ class MessagesSocket {
     this.listen()
   }
 
+  public disconnect(): void {
+    if (!this.socket || !this.connected.value) {
+      return
+    }
+
+    this.socket.disconnect()
+  }
+
   private listen() {
     if (!this.socket) {
       return

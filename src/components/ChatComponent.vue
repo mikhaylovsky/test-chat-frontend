@@ -2,12 +2,15 @@
 import MessagesSocket from '@/messages-socket'
 import { ref, watch } from 'vue'
 import { authState } from '@/auth'
+import eventBus from '@/event-bus'
 
 const socket = new MessagesSocket(authState.userId!)
 socket.connect()
 
 const messageText = ref<string | null>(null)
 const messageBox = ref<HTMLElement>()
+
+eventBus.$on('logout', () => socket.disconnect())
 
 watch(
   socket.messages,
