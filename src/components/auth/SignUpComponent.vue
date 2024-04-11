@@ -68,13 +68,16 @@ const signUp = async () => {
   justify-content: start;
   place-items: center;
 }
+
 .heading h1 {
   margin-right: 1rem;
 }
+
 .form {
   text-align: center;
   margin-bottom: 1rem;
 }
+
 .action {
   margin: 0.5rem 0;
 }

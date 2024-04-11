@@ -10,5 +10,3 @@ import { AuthMode, authMode } from '@/components/auth/useAuth'
     <SignUpComponent v-else-if="authMode === AuthMode.SIGN_UP" />
   </div>
 </template>
-
-<style scoped></style>
